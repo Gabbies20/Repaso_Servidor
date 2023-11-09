@@ -7,18 +7,19 @@
 </head>
 <body>
     <header>
-        <h1>Bienvenido a mi sitio web</h1>
+        <h1>Tareas asociadas al proyecto `{{proyecto_v.nombre}}' con id:{{proyecto_v.id}}</h1>
     </header>
     <nav>
-        
+        <ul>
+            
+        </ul>
     </nav>
     <main>
-        <ul>
-            <li><a href="{% url 'lista' %}">URL 2</a></li>
-            <li><a href="{% url 'tareas_asociadas' 1 %}">URL 3</a></li>
-            <li><a href="#">URL 4</a></li>
-            <li><a href="#">URL 5</a></li>
-        </ul>
+
+        {% for tarea in mostrar_tareas%}
+            *{{tarea.titulo}}
+        {% endfor %}
+
     </main>
     <footer>
         <p>Derechos de autor &copy; 2023 Mi Empresa</p>

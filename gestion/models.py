@@ -12,6 +12,8 @@ class Usuario(models.Model):
     contraseña = models.CharField(max_length=50)
     fecha_registro = models.DateTimeField(default=timezone.now)
     
+    def __str__(self) -> str:
+        return self.nombre
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=50)
@@ -24,6 +26,8 @@ class Proyecto(models.Model):
     #Relacion con usuario:un proyecto tiene un usuario que lo crea y lo administra.
     creador = models.ForeignKey(Usuario,on_delete=models.CASCADE,related_name='creador_proyecto')
     
+    def __str__(self) -> str:
+        return self.nombre
     
 class Tarea(models.Model):
     titulo = models.CharField(max_length=100)
@@ -39,7 +43,10 @@ class Tarea(models.Model):
     #Una tarea puede tener asignado uno o más usuarios y un usuario puede estar en varias tareas.
     usuarios_asignados = models.ManyToManyField(Usuario,through='AsignacionTarea',related_name='colaboradores_tarea')
     #Relacion con Proyecto:Un proyecto tiene varias tareas creadas.
-    proyecto = models.ForeignKey(Proyecto,on_delete=models.CASCADE)
+    proyecto = models.ForeignKey(Proyecto,on_delete=models.CASCADE,related_name='tareas_de_proyecto')
+    
+    def __str__(self) -> str:
+        return self.titulo
     
 class Etiqueta(models.Model):
     nombre = models.CharField(unique=True,max_length=50)

@@ -10,22 +10,47 @@
         <h1>Lista de Proyectos:</h1>
     </header>
     <nav>
-        kjhgfdxcvhbj
+    
     </nav>
     <main>
         <h1>Proyectos</h1>
-        {% for proyecto in proyectos %}
+        <ul>
+            <li>
+                        {% for proyecto in proyectos %}
             <div>
-                <h2>Nombre: {{proyecto.nombre}}</h2>
-                <h2>Descripcion: {{proyecto.descripcion}}</h2>
-                <h2>Duracion estimada: {{proyecto.duracion_estimada}}</h2>
-                <h2>Fecha inicio: {{proyecto.fecha_inicio}}</h2>
-                <h2>Fecha fin: {{proyecto.fecha_fin}}</h2>
-                <h2>Creador: {{proyecto.creador.nombre}}
+                <p><b>Proyecto:</b>: {{proyecto.nombre}}</p>
+                <p>Descripcion: {{proyecto.descripcion}}</p>
+                <p>Duracion estimada: {{proyecto.duracion_estimada}}</p>
+                <p>Fecha inicio: {{proyecto.fecha_inicio}}</p>
+                <p>Fecha fin: {{proyecto.fecha_finalizacion}}</p>
+                <p>Creador: {{proyecto.creador.nombre}}
+
+                <p><b>Usuarios asignados:</b></p>
+                {# Para recorrer una relacion de MAnytoMany: usamos un for  nombre_buscar nombre_variable_de_for_anterior.campo_de_la_tabla_que_lleva_la_relacion y como lo queremos todo.all#}
+                <ul>
+                   <li>
+                    {% for usuario in proyecto.usuarios_proyectos_asignados.all%}
+                    <p>Usuario: {{usuario.nombre}}</p>
+                {% endfor %}
+                   </li> 
+                </ul>
                 
+                {# En mi modelo proyecto no tengo ningun campo de tarea, pero en mi modelo Tarea si tengo un campo de proyectp..***********¿Como accedo a Tarea desde Proyecto?La solución una relación inversa, en el campo de tarea agrago un related_name y a ese nombre lo vamos a utilizar.#}
+                <p><b>Tareas:</b></p>
+                <ul>
+                    {% for tarea in proyecto.tareas_de_proyecto.all%}
+                    <li>
+                        {# Ya podemos acceder de forma directa a culaquier campo de nuestro modelo Tarea.#}
+                        <p>Tarea:{{tarea.titulo}}</p>
+                        <p>Descripcion:{{tarea.descripcion}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         <hr></hr>
         {% endfor %}
+            </li>
+        </ul>
     </main>
     <footer>
         <p>Derechos de autor &copy; 2023 Mi Empresa</p>

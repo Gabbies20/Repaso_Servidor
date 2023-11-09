@@ -24,4 +24,11 @@ def listar_proyectos(request):
     proyectos = Proyecto.objects.select_related('creador').prefetch_related('usuarios_proyectos_asignados')
     return render(request, "gestion/lista.html", {"proyectos":proyectos})
 
+"""
+    3.Crear una URL que muestre todas las tareas que están asociadas a un proyecto, ordenadas por fecha de creación descendente.
+"""
 
+def tareas_asociados_a_proyectos(request,id_proyecto):
+    proyecto = Proyecto.objects.get(pk=id_proyecto) 
+    tarea = Tarea.objects.select_related('creador','proyecto').prefetch_related('usuarios_asignados').filter(proyecto = id_proyecto)
+    return render(request,'gestion/url3.html',{'mostrar_tareas': tarea,'proyecto_v':proyecto})
