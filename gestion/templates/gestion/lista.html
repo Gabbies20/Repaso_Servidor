@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+</head>
+<body>
+    <header>
+        <h1>Lista de Proyectos:</h1>
+    </header>
+    <nav>
+        kjhgfdxcvhbj
+    </nav>
+    <main>
+        <h1>Proyectos</h1>
+        {% for proyecto in proyectos %}
+            <div>
+                <h2>Nombre: {{proyecto.nombre}}</h2>
+                <h2>Descripcion: {{proyecto.descripcion}}</h2>
+                <h2>Duracion estimada: {{proyecto.duracion_estimada}}</h2>
+                <h2>Fecha inicio: {{proyecto.fecha_inicio}}</h2>
+                <h2>Fecha fin: {{proyecto.fecha_fin}}</h2>
+                <h2>Creador: {{proyecto.creador.nombre}}
+                
+            </div>
+        <hr></hr>
+        {% endfor %}
+    </main>
+    <footer>
+        <p>Derechos de autor &copy; 2023 Mi Empresa</p>
+    </footer>
+</body>
+</html>
