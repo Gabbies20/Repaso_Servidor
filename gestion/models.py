@@ -51,7 +51,7 @@ class Tarea(models.Model):
 class Etiqueta(models.Model):
     nombre = models.CharField(unique=True,max_length=50)
     #Relacion con etiqueta:Una tarea puede tener varias etiquetas. Y una etiqueta puede estar asignada a varias tareas.
-    etiquetas_asociadas = models.ManyToManyField(Tarea)
+    etiquetas_asociadas = models.ManyToManyField(Tarea,related_name='etiquetas_asociadas_a_tareas')
     
     
 class AsignacionTarea(models.Model):

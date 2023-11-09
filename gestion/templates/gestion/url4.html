@@ -10,15 +10,15 @@
         <h1>Bienvenido a mi sitio web</h1>
     </header>
     <nav>
-        
+        <ul>
+            {% for usuario in usuarios_mostrar %}
+                    <p>Nombre:{{usuario.usuario}}</p>
+            {% endfor %}
+        </ul>
     </nav>
     <main>
-        <ul>
-            <li><a href="{% url 'lista' %}">URL 2</a></li>
-            <li><a href="{% url 'tareas_asociadas' 1 %}">URL 3</a></li>
-            <li><a href="{% url 'usuarios_tareas' 2 %}">URL 4</a></li>
-            <li><a href="#">URL 5</a></li>
-        </ul>
+
+        
     </main>
     <footer>
         <p>Derechos de autor &copy; 2023 Mi Empresa</p>

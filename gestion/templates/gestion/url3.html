@@ -1,28 +1,54 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
-</head>
-<body>
-    <header>
-        <h1>Tareas asociadas al proyecto `{{proyecto_v.nombre}}' con id:{{proyecto_v.id}}</h1>
-    </header>
-    <nav>
-        <ul>
-            
-        </ul>
-    </nav>
-    <main>
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Ejercicio</title>
+    </head>
+    <body>
 
-        {% for tarea in mostrar_tareas%}
-            *{{tarea.titulo}}
+        <h2>Proyecto: {{ proyecto_v.nombre }}</h2>
+
+        {% for tarea in mostrar_tareas %}
+            <div>
+                <h2>Id_Tarea: {{tarea.id}}</h2>
+                <h2>Título: {{tarea.titulo}}</h2>
+                <h2>Descripcion: {{tarea.descripcion}}</h2>
+                <h2>Prioridad: {{tarea.prioridad}}</h2>
+                <h2>Estado: {{tarea.get_estado_display}}</h2>
+                <h2>Completada: {{tarea.get_completada_display}}</h2>
+                <h2>Fecha Creacion: {{tarea.fecha_creacion}}</h2>
+                <h2>Hora vencimiento: {{tarea.hora_vencimiento}}</h2>
+                
+                <h2>Creador: {{tarea.creador.nombre}}</h2>
+
+                <h2>Usuarios Asignados</h2>
+                <ul>
+                    {% for usuario in tarea.usuarios_asignados.all%}
+                        <li>Usuario: {{usuario.nombre}}</li>
+                    {%endfor%}
+                </ul>
+
+                <h2>Etiquetas</h2>
+                <ul>
+                    {% for etiqueta in tarea.etiquetas_asociadas_a_tareas.all%}
+                        <li>Etiqueta: {{etiqueta.nombre}}</li>
+                    {%endfor%}
+                </ul>
+
+                <h2>Comentarios</h2>
+                {% for comentario in tarea.comentarios_tarea.all%}
+                <div>
+                    <ul>
+                        <li>Autor: {{comentario.autor.nombre}} </li>
+                        <li>Comentario: {{comentario.contenido}}</li>
+                    </ul>
+                <div>
+                {%endfor%}
+            <hr></hr>    
+            </div>
+        
         {% endfor %}
 
-    </main>
-    <footer>
-        <p>Derechos de autor &copy; 2023 Mi Empresa</p>
-    </footer>
-</body>
+    </body>
+
+
 </html>
